@@ -5,9 +5,9 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import "./App.css";
 
-import AddTutorial from "./components/AddBook";
-import Tutorial from "./components/Book";
-import TutorialsList from "./components/BooksList";
+import AddBook from "./components/AddBook";
+import Book from "./components/Book";
+import BooksList from "./components/BooksList";
 
 // ui components
 import Header from "./components/Header";
