@@ -1,34 +1,34 @@
 import http from "../components/http/http-common";
 
 const getAll = () => {
-  return http.get("/tutorials");
+  return http.get("/books");
 };
 
 const get = (id) => {
-  return http.get(`/tutorials/${id}`);
+  return http.get(`/books/${id}`);
 };
 
 const create = (data) => {
-  return http.post("/tutorials", data);
+  return http.post("/books", data);
 };
 
 const update = (id, data) => {
-  return http.put(`/tutorials/${id}`, data);
+  return http.put(`/books/${id}`, data);
 };
 
 const remove = (id) => {
-  return http.delete(`/tutorials/${id}`);
+  return http.delete(`/books/${id}`);
 };
 
 const removeAll = () => {
-  return http.delete(`/tutorials`);
+  return http.delete(`/books`);
 };
 
 const findByTitle = (title) => {
-  return http.get(`/tutorials?title=${title}`);
+  return http.get(`/books?title=${title}`);
 };
 
-const TutorialService = {
+const bookservice = {
   getAll,
   get,
   create,
@@ -38,4 +38,4 @@ const TutorialService = {
   findByTitle,
 };
 
-export default TutorialService;
+export default bookservice;

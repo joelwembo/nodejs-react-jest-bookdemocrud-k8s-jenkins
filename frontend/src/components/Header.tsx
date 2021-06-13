@@ -6,14 +6,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Header() {
   return (
-   
+
       <nav className="navbar navbar-expand navbar-light bg-light">
-        <a href="/tutorials" className="navbar-brand">
+        <a href="/books" className="navbar-brand">
           Demo App
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/tutorials"} className="nav-link">
+            <Link to={"/books"} className="nav-link">
               Books
             </Link>
           </li>
@@ -24,7 +24,7 @@ function Header() {
           </li>
         </div>
       </nav>
-      
+
   );
 }
 
