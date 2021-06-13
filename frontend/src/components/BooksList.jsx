@@ -88,6 +88,14 @@ const BooksList = (props) => {
         accessor: "description",
       },
       {
+        Header: "Firstname",
+        accessor: "firstname",
+      },
+      {
+        Header: "Lastname",
+        accessor: "lastname",
+      },
+      {
         Header: "Status",
         accessor: "published",
         Cell: (props) => {
@@ -106,7 +114,7 @@ const BooksList = (props) => {
               </span>
 
               <span onClick={() => deleteBook(rowIdx)}>
-                <i className="fas fa-delete action"></i>
+                <i className="fas fa-trash action"></i>
               </span>
             </div>
           );
@@ -183,7 +191,7 @@ const BooksList = (props) => {
       </div>
 
       <div className="col-md-8">
-        <button className="btn btn-sm btn-danger" onClick={removeAllBooks}>
+        <button className="btn btn-sm btn-warning" onClick={removeAllBooks}>
           Delete All Rows
         </button>
       </div>
