@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-import TutorialDataService from "../services/BookService";
+import BookDataService from "../services/BookService";
 
-const AddTutorial = () => {
-  const initialTutorialState = {
+const Addbook = () => {
+  const initialBookState = {
     id: null,
     title: "",
     description: "",
     published: false
   };
-  const [tutorial, setTutorial] = useState(initialTutorialState);
+  const [book, setbook] = useState(initialbookState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setTutorial({ ...tutorial, [name]: value });
+    setbook({ ...book, [name]: value });
   };
 
-  const saveTutorial = () => {
+  const savebook = () => {
     var data = {
-      title: tutorial.title,
-      description: tutorial.description
+      title: book.title,
+      description: book.description
     };
 
-    TutorialDataService.create(data)
+    bookDataService.create(data)
       .then(response => {
-        setTutorial({
+        setbook({
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
@@ -38,8 +38,8 @@ const AddTutorial = () => {
       });
   };
 
-  const newTutorial = () => {
-    setTutorial(initialTutorialState);
+  const newbook = () => {
+    setbook(initialbookState);
     setSubmitted(false);
   };
 
@@ -48,7 +48,7 @@ const AddTutorial = () => {
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newTutorial}>
+          <button className="btn btn-success" onClick={newbook}>
             Add
           </button>
         </div>
@@ -61,7 +61,7 @@ const AddTutorial = () => {
               className="form-control"
               id="title"
               required
-              value={tutorial.title}
+              value={book.title}
               onChange={handleInputChange}
               name="title"
             />
@@ -74,13 +74,13 @@ const AddTutorial = () => {
               className="form-control"
               id="description"
               required
-              value={tutorial.description}
+              value={book.description}
               onChange={handleInputChange}
               name="description"
             />
           </div>
 
-          <button onClick={saveTutorial} className="btn btn-success">
+          <button onClick={savebook} className="btn btn-success">
             Submit
           </button>
         </div>
@@ -89,4 +89,4 @@ const AddTutorial = () => {
   );
 };
 
-export default AddTutorial;
+export default Addbook;

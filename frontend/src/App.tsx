@@ -21,9 +21,9 @@ function App() {
 
       <div className="container mt-3">
         <Switch>
-          <Route exact path={["/", "/tutorials"]} component={BooksList} />
+          <Route exact path={["/", "/Books"]} component={BooksList} />
           <Route exact path="/add" component={AddBook} />
-          <Route path="/tutorials/:id" component={Book} />
+          <Route path="/Books/:id" component={Book} />
         </Switch>
       </div>
     </div>

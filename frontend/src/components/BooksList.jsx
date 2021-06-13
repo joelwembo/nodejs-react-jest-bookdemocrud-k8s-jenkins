@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
-import TutorialDataService from "../services/BookService";
+import BookDataService from "../services/BookService";
 
 
-const TutorialsList = (props) => {
-  const [tutorials, setTutorials] = useState([]);
+const BooksList = (props) => {
+  const [books, setBooks] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
-  const tutorialsRef = useRef();
+  const booksRef = useRef();
 
-  tutorialsRef.current = tutorials;
+  booksRef.current = books;
 
   useEffect(() => {
-    retrieveTutorials();
+    retrieveBooks();
   }, []);
 
   const onChangeSearchTitle = (e) => {
@@ -19,10 +19,10 @@ const TutorialsList = (props) => {
     setSearchTitle(searchTitle);
   };
 
-  const retrieveTutorials = () => {
-    TutorialDataService.getAll()
+  const retrieveBooks = () => {
+    BookDataService.getAll()
       .then((response) => {
-        setTutorials(response.data);
+        setBooks(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -30,11 +30,11 @@ const TutorialsList = (props) => {
   };
 
   const refreshList = () => {
-    retrieveTutorials();
+    retrieveBooks();
   };
 
-  const removeAllTutorials = () => {
-    TutorialDataService.removeAll()
+  const removeAllBooks = () => {
+    BookDataService.removeAll()
       .then((response) => {
         console.log(response.data);
         refreshList();
@@ -45,32 +45,32 @@ const TutorialsList = (props) => {
   };
 
   const findByTitle = () => {
-    TutorialDataService.findByTitle(searchTitle)
+    BookDataService.findByTitle(searchTitle)
       .then((response) => {
-        setTutorials(response.data);
+        setBooks(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const openTutorial = (rowIndex) => {
-    const id = tutorialsRef.current[rowIndex].id;
+  const openBook = (rowIndex) => {
+    const id = BooksRef.current[rowIndex].id;
 
-    props.history.push("/tutorials/" + id);
+    props.history.push("/Books/" + id);
   };
 
-  const deleteTutorial = (rowIndex) => {
-    const id = tutorialsRef.current[rowIndex].id;
+  const deleteBook = (rowIndex) => {
+    const id = BooksRef.current[rowIndex].id;
 
-    TutorialDataService.remove(id)
+    BookDataService.remove(id)
       .then((response) => {
-        props.history.push("/tutorials");
+        props.history.push("/Books");
 
-        let newTutorials = [...tutorialsRef.current];
-        newTutorials.splice(rowIndex, 1);
+        let newBooks = [...BooksRef.current];
+        newBooks.splice(rowIndex, 1);
 
-        setTutorials(newTutorials);
+        setBooks(newBooks);
       })
       .catch((e) => {
         console.log(e);
@@ -101,11 +101,11 @@ const TutorialsList = (props) => {
           const rowIdx = props.row.id;
           return (
             <div>
-              <span onClick={() => openTutorial(rowIdx)}>
+              <span onClick={() => openBook(rowIdx)}>
                 <i className="far fa-edit action mr-2"></i>
               </span>
 
-              <span onClick={() => deleteTutorial(rowIdx)}>
+              <span onClick={() => deleteBook(rowIdx)}>
                 <i className="fas fa-delete action"></i>
               </span>
             </div>
@@ -124,7 +124,7 @@ const TutorialsList = (props) => {
     prepareRow,
   } = useTable({
     columns,
-    data: tutorials,
+    data: Books,
   });
 
   return (
@@ -183,7 +183,7 @@ const TutorialsList = (props) => {
       </div>
 
       <div className="col-md-8">
-        <button className="btn btn-sm btn-danger" onClick={removeAllTutorials}>
+        <button className="btn btn-sm btn-danger" onClick={removeAllBooks}>
           Delete All Rows
         </button>
       </div>
@@ -191,4 +191,4 @@ const TutorialsList = (props) => {
   );
 };
 
-export default TutorialsList;
+export default BooksList;
