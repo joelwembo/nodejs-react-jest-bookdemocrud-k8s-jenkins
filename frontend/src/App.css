@@ -3,11 +3,27 @@
 }
 
 .submit-form {
-  max-width: 300px;
-  margin: auto;
+  max-width: 600px;
+  border-bottom: 3px;
+  border-left: 4px;
+  border-top-left-radius: 5px;
+  border-spacing: 2px;
+  border-radius: 2px;
+
 }
 
 .edit-form {
-  max-width: 300px;
-  margin: auto;
+ 
+  max-width: 600px;
+  border-bottom: 3px;
+  border-left: 4px;
+  border-top-left-radius: 5px;
+  border-spacing: 2px;
+  border-radius: 2px;
+
+}
+
+.btn {
+  white-space: normal;
+  margin-left: 10px;
 }

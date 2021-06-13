@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import BookDataService from "../services/BookService";
 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
+
 const Book = props => {
   const initialBookState = {
     id: null,
@@ -40,6 +44,8 @@ const Book = props => {
       id: currentBook.id,
       title: currentBook.title,
       description: currentBook.description,
+      firstname: currentBook.firstname,
+      lastname : currentBook.lastname,
       published: status
     };
 
@@ -80,8 +86,8 @@ const Book = props => {
     <div>
       {currentBook ? (
         <div className="edit-form">
-          <h4>Book</h4>
-          <form>
+          <h4>Book Details</h4>
+        
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <input
@@ -93,17 +99,49 @@ const Book = props => {
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="form-group">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="firstname">First Name</label>
               <input
                 type="text"
                 className="form-control"
-                id="description"
-                name="description"
-                value={currentBook.description}
+                id="firstname"
+                name="firstname"
+                value={currentBook.firstname}
                 onChange={handleInputChange}
               />
             </div>
+
+            <div className="form-group">
+              <label htmlFor="lastname">Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="lastname"
+                name="lastname"
+                value={currentBook.lastname}
+                onChange={handleInputChange}
+              />
+            </div>
+            
+
+          <div className="form-group">
+          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
+          <textarea 
+             placeholder="Enter your Descript here"
+             className="form-control"
+             id="description"
+             required
+             value={currentBook.description}
+             onChange={handleInputChange}
+             name="description"
+          
+          
+             >
+
+
+          </textarea>
+          </div>
 
             <div className="form-group">
               <label>
@@ -111,35 +149,38 @@ const Book = props => {
               </label>
               {currentBook.published ? "Published" : "Pending"}
             </div>
-          </form>
+         
+
+
 
           {currentBook.published ? (
-            <button
-              className="badge badge-primary mr-2"
+            <Button className="btn"
+              color="primary"
               onClick={() => updatePublished(false)}
             >
-              UnPublish
-            </button>
+                UnPublish 
+            </Button> 
           ) : (
-            <button
-              className="badge badge-primary mr-2"
+            <Button
+              color="warning"
+             
               onClick={() => updatePublished(true)}
             >
-              Publish
-            </button>
-          )}
-
-          <button className="badge badge-danger mr-2" onClick={deleteBook}>
+              {  ''} Publish 
+            </Button>
+          )} 
+          <Button color="danger" onClick={deleteBook}>
             Delete
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="submit"
-            className="badge badge-success"
+            color="primary"
+            
             onClick={updateBook}
           >
-            Update
-          </button>
+            Update  
+          </Button>
           <p>{message}</p>
         </div>
       ) : (

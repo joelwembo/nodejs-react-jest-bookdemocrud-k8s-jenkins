@@ -2,6 +2,9 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
 import BookDataService from "../services/BookService";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
+
 
 const BooksList = (props) => {
   const [books, setBooks] = useState([]);

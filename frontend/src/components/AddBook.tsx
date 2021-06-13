@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import BookDataService from "../services/BookService";
 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
+
 const Addbook = () => {
   const initialBookState = {
     id: null,
@@ -65,6 +69,7 @@ const Addbook = () => {
             <label htmlFor="title">Title</label>
             <input
               type="text"
+              placeholder="Book title"
               className="form-control"
               id="title"
               required
@@ -78,6 +83,7 @@ const Addbook = () => {
             <label htmlFor="firstname">Author Firstname</label>
             <input
               type="text"
+              placeholder="Author Firstname"
               className="form-control"
               id="firstname"
               required
@@ -91,6 +97,7 @@ const Addbook = () => {
             <label htmlFor="lastname">Author Lastname</label>
             <input
               type="text"
+              placeholder="Author Lastname"
               className="form-control"
               id="lastname"
               required
@@ -100,22 +107,29 @@ const Addbook = () => {
             />
           </div>
 
+          
+
           <div className="form-group">
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              required
-              value={book.description}
-              onChange={handleInputChange}
-              name="description"
-            />
+          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
+          <textarea 
+             placeholder="Enter your Descript here"
+             className="form-control"
+             id="description"
+             required
+             value={book.description}
+             onChange={handleInputChange}
+             name="description"
+          
+          
+             >
+
+
+          </textarea>
           </div>
 
-          <button onClick={savebook} className="btn btn-success">
+          <Button onClick={savebook} color="primary">
             Submit
-          </button>
+          </Button>
         </div>
       )}
     </div>

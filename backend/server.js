@@ -1,4 +1,4 @@
-/*  App : Book Demo 
+/*  App : Book Demo
     Author : Joel Otepa Wembo
 */
 const express = require("express");
@@ -52,6 +52,10 @@ app.get("/", (req, res) => {
 require("./app/routes/routes")(app);
 
 // set port, listen for requests
-
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => { console.log(`the Demo Server is running on port ${PORT}.`); });
+try {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => { console.log(`the Demo Server is running on port ${PORT}.`); });
+}
+catch(error) {
+  console.log("something wrong with the server!" + error)
+}
