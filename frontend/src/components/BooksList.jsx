@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useTable } from "react-table";
+import { useTable, useFilters, useSortBy } from "react-table";
+
 import BookDataService from "../services/BookService";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,8 +12,11 @@ const BooksList = (props) => {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchFirstname, setSearchFirstname] = useState("");
   const booksRef = useRef();
-
   booksRef.current = books;
+
+  // sorting and filtering
+
+
 
   useEffect(() => {
     retrieveBooks();
@@ -144,16 +148,26 @@ const BooksList = (props) => {
     []
   );
 
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
+    setFilter
   } = useTable({
     columns,
     data: books,
-  });
+    
+  },
+    useFilters,
+    useSortBy
+  
+  );
+
+
+
 
   return (
     <div className="list row">
@@ -172,7 +186,7 @@ const BooksList = (props) => {
               type="button"
               onClick={findByTitle}
             >
-              Search
+              Search By Title
             </button>
           </div>
         </div>
@@ -193,11 +207,54 @@ const BooksList = (props) => {
               type="button"
               onClick={findByFirstname}
             >
-              Search
+              Search By First Name
             </button>
           </div>
         </div>
       </div>
+
+      <div className="col-md-12 list">
+        <table
+          className="table table-striped table-bordered"
+          {...getTableProps()}
+        >
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                    <th
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    className={
+                      column.isSorted
+                        ? column.isSortedDesc
+                          ? "sort-desc"
+                          : "sort-asc"
+                        : ""
+                    }
+                    >
+                    {column.render("Header")}
+                    </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
 
       <div className="col-md-12 list">
         <table
@@ -231,6 +288,10 @@ const BooksList = (props) => {
           </tbody>
         </table>
       </div>
+
+
+
+
 
       <div className="col-md-8">
         <button className="btn btn-sm btn-warning" onClick={removeAllBooks}>
