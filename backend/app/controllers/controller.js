@@ -69,19 +69,20 @@ exports.findOne = (req, res) => {
 
 
 // Find a single Book with firstname
-exports.find = (req, res) => {
+exports.findFirstname = (req, res) => {
   const firstname = req.params.firstname;
 
-  Book.find(firstname)
+  Book.find({firstname})
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found Book with firstname " + firstname });
+        
       else res.send(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving Book with id=" + id });
+        .send({ message: err + "Error retrieving Book with firstname=" + firstname });
     });
 };
 

@@ -29,7 +29,7 @@ const findByTitle = (title) => {
 };
 
 const findByFirstname = (firstname) => {
-  return http.get(`/books?firstname=${firstname}`);
+  return http.get(`/books/firstname/${firstname}`);
 };
 
 const bookservice = {
@@ -40,6 +40,7 @@ const bookservice = {
   remove,
   removeAll,
   findByTitle,
+  findByFirstname
 };
 
 export default bookservice;

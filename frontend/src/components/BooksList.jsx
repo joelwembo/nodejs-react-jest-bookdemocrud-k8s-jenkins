@@ -23,6 +23,11 @@ const BooksList = (props) => {
     setSearchTitle(searchTitle);
   };
 
+  const onChangeSearchFirstname = (e) => {
+    const searchFirstname = e.target.value;
+    setSearchFirstname(searchFirstname);
+  }
+
   const retrieveBooks = () => {
     BookDataService.getAll()
       .then((response) => {
@@ -57,7 +62,7 @@ const BooksList = (props) => {
         console.log(e);
       });
   };
-
+  // first by firstname
   const findByFirstname = () => {
     BookDataService.findByFirstname(searchFirstname)
       .then((response) => {
@@ -172,6 +177,28 @@ const BooksList = (props) => {
           </div>
         </div>
       </div>
+
+      <div className="col-md-8">
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by firstname"
+            value={searchFirstname}
+            onChange={onChangeSearchFirstname}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-primary"
+              type="button"
+              onClick={findByFirstname}
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="col-md-12 list">
         <table
           className="table table-striped table-bordered"
