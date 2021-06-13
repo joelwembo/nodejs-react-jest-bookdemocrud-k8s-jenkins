@@ -8,7 +8,7 @@ const Addbook = () => {
     description: "",
     published: false
   };
-  const [book, setbook] = useState(initialbookState);
+  const [book, setbook] = useState(initialBookState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = event => {
@@ -22,7 +22,7 @@ const Addbook = () => {
       description: book.description
     };
 
-    bookDataService.create(data)
+    BookDataService.create(data)
       .then(response => {
         setbook({
           id: response.data.id,
@@ -39,7 +39,7 @@ const Addbook = () => {
   };
 
   const newbook = () => {
-    setbook(initialbookState);
+    setbook(initialBookState);
     setSubmitted(false);
   };
 

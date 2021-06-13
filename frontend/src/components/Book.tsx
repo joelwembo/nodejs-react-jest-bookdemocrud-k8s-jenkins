@@ -1,4 +1,4 @@
-Bookimport React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import BookDataService from "../services/BookService";
 
 const Book = props => {
@@ -11,6 +11,7 @@ const Book = props => {
     age : "",
     published: false
   };
+
   const [currentBook, setCurrentBook] = useState(initialBookState);
   const [message, setMessage] = useState("");
 
@@ -151,4 +152,4 @@ const Book = props => {
   );
 };
 
-export default Tutorial;
+export default Book;

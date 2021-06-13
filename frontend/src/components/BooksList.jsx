@@ -55,19 +55,19 @@ const BooksList = (props) => {
   };
 
   const openBook = (rowIndex) => {
-    const id = BooksRef.current[rowIndex].id;
+    const id = booksRef.current[rowIndex].id;
 
     props.history.push("/Books/" + id);
   };
 
   const deleteBook = (rowIndex) => {
-    const id = BooksRef.current[rowIndex].id;
+    const id = booksRef.current[rowIndex].id;
 
     BookDataService.remove(id)
       .then((response) => {
         props.history.push("/Books");
 
-        let newBooks = [...BooksRef.current];
+        let newBooks = [...booksRef.current];
         newBooks.splice(rowIndex, 1);
 
         setBooks(newBooks);
@@ -124,7 +124,7 @@ const BooksList = (props) => {
     prepareRow,
   } = useTable({
     columns,
-    data: Books,
+    data: books,
   });
 
   return (
