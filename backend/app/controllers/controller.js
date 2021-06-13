@@ -1,7 +1,7 @@
 const db = require("../models");
 const Book = db.books;
 
-// Create and Save a new Tutorial
+// Create and Save a new Book into the database
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.title) {
@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
+  // Create a Book
   const book = new Book({
     title: req.body.title,
     description: req.body.description,
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
   });
 
-  // Save Tutorial in the database
+  // Save Book in the database
   book
     .save(book)
     .then(data => {
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Books from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
@@ -69,13 +69,13 @@ exports.findOne = (req, res) => {
 
 
 // Find a single Book with firstname
-exports.findOne = (req, res) => {
-  const id = req.params.id;
+exports.find = (req, res) => {
+  const firstname = req.params.firstname;
 
-  Book.findById(id)
+  Book.find(firstname)
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found Book with id " + id });
+        res.status(404).send({ message: "Not found Book with firstname " + firstname });
       else res.send(data);
     })
     .catch(err => {
