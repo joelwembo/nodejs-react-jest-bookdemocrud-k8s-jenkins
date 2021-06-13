@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
-import TutorialDataService from "../services/TutorialService";
+import TutorialDataService from "../services/BookService";
 
 
 const TutorialsList = (props) => {
