@@ -14,11 +14,8 @@ const BooksList = (props) => {
   const booksRef = useRef();
   booksRef.current = books;
 
-
   // sorting and filtering
   const [filterInput, setFilterInput] = useState("");
-
-
 
 
   useEffect(() => {
@@ -257,13 +254,9 @@ const BooksList = (props) => {
 
 
 
-
-
-
-
       <div className="col-md-8">
-        <button className="btn btn-sm btn-warning" onClick={removeAllBooks}>
-          Delete All Rows
+        <button className="btn btn-warning" onClick={removeAllBooks}>
+              Delete All Rows
         </button>
       </div>
     </div>
