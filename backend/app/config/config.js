@@ -3,5 +3,5 @@
 */
 
 module.exports = {
-  url: "mongodb://localhost:27017/JobTestDB"
+  url: "mongodb://localhost:27017/JobTestDB2"
 };

@@ -14,11 +14,9 @@ exports.create = (req, res) => {
     title: req.body.title,
     description: req.body.description,
     published: req.body.published ? req.body.published : false,
-    firstname: req.body.firstname ? req.body.firstname : '',
-    lastname: req.body.lastname ? req.body.lastname: '',
-    age: req.body.age ? req.body.age: 30,
-    ISBNumber: req.body.ISBNumber ? req.body.ISBNumber: 'ISBN-000'
-
+    firstname: req.body.firstname,
+    lastname: req.body.lastname
+  
   });
 
   // Save Tutorial in the database
@@ -83,18 +81,18 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot update Book with id=${id}. Maybe Book was not found!`
         });
-      } else res.send({ message: "Tutorial was updated successfully." });
+      } else res.send({ message: "Book was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error updating Book with id=" + id
       });
     });
 };
 
-// Delete a Tutorial with the specified id in the request
+// Delete a Books with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -102,17 +100,17 @@ exports.delete = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot delete Book with id=${id}. Maybe Books was not found!`
         });
       } else {
         res.send({
-          message: "Tutorial was deleted successfully!"
+          message: "Book  was deleted successfully!"
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "Could not delete Book with id=" + id
       });
     });
 };
@@ -122,13 +120,13 @@ exports.deleteAll = (req, res) => {
   Book.deleteMany({})
     .then(data => {
       res.send({
-        message: `${data.deletedCount} Tutorials were deleted successfully!`
+        message: `${data.deletedCount} Books were deleted successfully!`
       });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all tutorials."
+          err.message || "Some error occurred while removing all Books."
       });
     });
 };

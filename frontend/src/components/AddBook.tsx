@@ -6,7 +6,10 @@ const Addbook = () => {
     id: null,
     title: "",
     description: "",
-    published: false
+    published: false,
+    firstname: "",
+    lastname: ""
+
   };
   const [book, setbook] = useState(initialBookState);
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +22,9 @@ const Addbook = () => {
   const savebook = () => {
     var data = {
       title: book.title,
-      description: book.description
+      description: book.description,
+      firstname: book.firstname,
+      lastname: book.lastname
     };
 
     BookDataService.create(data)
@@ -28,7 +33,9 @@ const Addbook = () => {
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
-          published: response.data.published
+          published: response.data.published,
+          firstname: response.data.firstname,
+          lastname: response.data.lastname
         });
         setSubmitted(true);
         console.log(response.data);
@@ -64,6 +71,32 @@ const Addbook = () => {
               value={book.title}
               onChange={handleInputChange}
               name="title"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="firstname">Author Firstname</label>
+            <input
+              type="text"
+              className="form-control"
+              id="firstname"
+              required
+              value={book.firstname}
+              onChange={handleInputChange}
+              name="firstname"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="lastname">Author Lastname</label>
+            <input
+              type="text"
+              className="form-control"
+              id="lastname"
+              required
+              value={book.lastname}
+              onChange={handleInputChange}
+              name="lastname"
             />
           </div>
 
