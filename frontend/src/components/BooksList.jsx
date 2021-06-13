@@ -9,6 +9,7 @@ import { Button } from 'reactstrap';
 const BooksList = (props) => {
   const [books, setBooks] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
+  const [searchFirstname, setSearchFirstname] = useState("");
   const booksRef = useRef();
 
   booksRef.current = books;
@@ -56,6 +57,17 @@ const BooksList = (props) => {
         console.log(e);
       });
   };
+
+  const findByFirstname = () => {
+    BookDataService.findByFirstname(searchFirstname)
+      .then((response) => {
+        setBooks(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
 
   const openBook = (rowIndex) => {
     const id = booksRef.current[rowIndex].id;
@@ -151,7 +163,7 @@ const BooksList = (props) => {
           />
           <div className="input-group-append">
             <button
-              className="btn btn-outline-secondary"
+              className="btn btn-outline-primary"
               type="button"
               onClick={findByTitle}
             >

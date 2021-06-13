@@ -28,6 +28,10 @@ const findByTitle = (title) => {
   return http.get(`/books?title=${title}`);
 };
 
+const findByFirstname = (firstname) => {
+  return http.get(`/books?firstname=${firstname}`);
+};
+
 const bookservice = {
   getAll,
   get,

@@ -16,7 +16,7 @@ exports.create = (req, res) => {
     published: req.body.published ? req.body.published : false,
     firstname: req.body.firstname,
     lastname: req.body.lastname
-  
+
   });
 
   // Save Tutorial in the database
@@ -50,7 +50,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Tutorial with an id
+// Find a single Book with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -63,11 +63,30 @@ exports.findOne = (req, res) => {
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving Tutorial with id=" + id });
+        .send({ message: "Error retrieving Book with id=" + id });
     });
 };
 
-// Update a Tutorial by the id in the request
+
+// Find a single Book with firstname
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+
+  Book.findById(id)
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found Book with id " + id });
+      else res.send(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Book with id=" + id });
+    });
+};
+
+
+// Update a Book by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -115,7 +134,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Tutorials from the database.
+// Delete all Books from the database.
 exports.deleteAll = (req, res) => {
   Book.deleteMany({})
     .then(data => {
@@ -131,7 +150,7 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// Find all published Tutorials
+// Find all published Books
 exports.findAllPublished = (req, res) => {
   Book.find({ published: true })
     .then(data => {
