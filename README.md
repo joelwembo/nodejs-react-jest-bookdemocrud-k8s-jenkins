@@ -1,6 +1,14 @@
-# book demo crud
+# book app demo CRUD created using the following technologies 
+REACT TYPESCRIPT, NodeJS, Express,  MongoDB, React-Table.
 
-A Demo or Book Archives app (CRUD) 
+Software required:
+Nodejs 
+create-react-app
+Typescript
+MongoDB
+Postmon
+
+To Run this application 
 
 backend
 
@@ -15,3 +23,4 @@ npm install typescript -g
 npm install @types ...
 
 npm start 
+
