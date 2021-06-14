@@ -7,6 +7,10 @@ const cors = require("cors");
 // the framework used
 const app = express();
 
+//testing modules dependencies
+
+
+
 // preventing others ip access to this rest api
 var corsOptions = {
   origin: "http://localhost:3000"

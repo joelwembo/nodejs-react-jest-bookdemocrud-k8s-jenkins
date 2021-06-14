@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js Restful CRUD API with Node.js, Express and MongoDB",
   "main": "server.js",
-
-  
   "scripts": {
     "test": "jest"
-      }
-   ,
-
+  },
   "keywords": [
     "nodejs",
     "express",
@@ -26,6 +22,7 @@
     "typescript": "^4.3.2"
   },
   "devDependencies": {
-    "jest": "^27.0.4"
+    "jest": "^27.0.4",
+    "supertest": "^6.1.3"
   }
 }
