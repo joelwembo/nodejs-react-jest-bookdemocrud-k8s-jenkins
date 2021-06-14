@@ -87,7 +87,7 @@ const Book = props => {
       {currentBook ? (
         <div className="edit-form">
           <h4>Book Details</h4>
-        
+
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <input
@@ -123,20 +123,20 @@ const Book = props => {
                 onChange={handleInputChange}
               />
             </div>
-            
+
 
           <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
-          <textarea 
-             placeholder="Enter your Descript here"
+          <label htmlFor="exampleFormControlTextarea1">Book Description</label>
+          <textarea
+             placeholder="Enter your Description here"
              className="form-control"
              id="description"
              required
              value={currentBook.description}
              onChange={handleInputChange}
              name="description"
-          
-          
+
+
              >
 
 
@@ -149,7 +149,7 @@ const Book = props => {
               </label>
               {currentBook.published ? "Published" : "Pending"}
             </div>
-         
+
 
 
 
@@ -158,28 +158,28 @@ const Book = props => {
               color="primary"
               onClick={() => updatePublished(false)}
             >
-                UnPublish 
-            </Button> 
+                UnPublish
+            </Button>
           ) : (
             <Button
               color="warning"
-             
+
               onClick={() => updatePublished(true)}
             >
-              {  ''} Publish 
+              {  ''} Publish
             </Button>
-          )} 
+          )}
           <Button color="danger" onClick={deleteBook}>
             Delete
           </Button>
 
           <Button
             type="submit"
-            color="primary"
-            
+            color="success"
+
             onClick={updateBook}
           >
-            Update  
+            Update
           </Button>
           <p>{message}</p>
         </div>

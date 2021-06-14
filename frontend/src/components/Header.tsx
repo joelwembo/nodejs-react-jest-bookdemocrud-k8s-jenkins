@@ -9,7 +9,7 @@ function Header() {
 
       <nav className="navbar navbar-expand navbar-light bg-light">
         <a href="/books" className="navbar-brand">
-          Demo App
+          Book Store CRUD
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
