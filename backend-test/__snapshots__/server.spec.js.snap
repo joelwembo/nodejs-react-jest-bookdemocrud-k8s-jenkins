@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TEST server.js GET / route , should return message 1`] = `
+Object {
+  "msg": "WORKING!!!",
+}
+`;
+
+exports[`TEST server.js GET /book/:id , should return book where id=1 1`] = `
+Object {
+  "author": "Author 1",
+  "genre": "SciFi",
+  "id": 1,
+  "price": 100,
+}
+`;
+
+exports[`TEST server.js GET /book/:id , should return error message when book with the specified id is not found 1`] = `
+Object {
+  "error": "Book not found!",
+}
+`;
+
+exports[`TEST server.js POST /book , should return error if author is null 1`] = `
+Object {
+  "error": "Invalid params",
+}
+`;
+
+exports[`TEST server.js POST /book , should return error if id is null 1`] = `
+Object {
+  "error": "Invalid params",
+}
+`;
+
+exports[`TEST server.js POST /book , should return the successfully inserted book object 1`] = `
+Object {
+  "author": "Author 6",
+  "genre": "Health",
+  "id": "6",
+  "price": 100,
+}
+`;

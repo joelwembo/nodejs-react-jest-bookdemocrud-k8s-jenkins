@@ -55,7 +55,6 @@ table td:last-child {
   border-right: 1;
 }
 table tr:nth-child(even) {
-  background-color:honeydew;
   font-weight: 700;
 }
 
