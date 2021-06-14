@@ -107,20 +107,20 @@ const Addbook = () => {
             />
           </div>
 
-          
+
 
           <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
-          <textarea 
-             placeholder="Enter your Descript here"
+          <label htmlFor="exampleFormControlTextarea1">Description</label>
+          <textarea
+             placeholder="Enter your Description here"
              className="form-control"
              id="description"
              required
              value={book.description}
              onChange={handleInputChange}
              name="description"
-          
-          
+
+
              >
 
 

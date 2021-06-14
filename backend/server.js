@@ -13,7 +13,7 @@ const app = express();
 
 // preventing others ip access to this rest api
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:3000" // for our frontend
 };
 
 app.use(cors(corsOptions));

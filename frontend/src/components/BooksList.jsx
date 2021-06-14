@@ -3,7 +3,6 @@ import { useTable, useFilters, useSortBy } from "react-table";
 
 import BookDataService from "../services/BookService";
 
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
@@ -172,11 +171,11 @@ const BooksList = (props, location, zoomLevel) => {
   } = useTable({
     columns,
     data: books,
-    
+
   },
     useFilters,
     useSortBy
-  
+
   );
 
   return (
@@ -225,7 +224,7 @@ const BooksList = (props, location, zoomLevel) => {
 
       <div className="col-md-12 list">
         <table
-          
+
           {...getTableProps()}
         >
           <thead>
@@ -285,5 +284,3 @@ const BooksList = (props, location, zoomLevel) => {
 };
 
 export default BooksList;
-
-
