@@ -3,11 +3,24 @@ import { useTable, useFilters, useSortBy } from "react-table";
 
 import BookDataService from "../services/BookService";
 
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
+// third party api integration
 
-const BooksList = (props) => {
+import MyComponent from "./MyComponent";
+
+const mapStyles = {
+  width: '45%',
+  height: '45%',
+};
+
+const apiKey = 'AIzaSyA4RibEH1oTDyyNnJlgNpjSNryHVr4ttX0';
+
+
+
+const BooksList = (props, location, zoomLevel) => {
   const [books, setBooks] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
   const [searchFirstname, setSearchFirstname] = useState("");
@@ -259,8 +272,18 @@ const BooksList = (props) => {
               Delete All Rows
         </button>
       </div>
+
+
+            <div>
+              <MyComponent />
+            </div>
+
+
+
     </div>
   );
 };
 
 export default BooksList;
+
+
