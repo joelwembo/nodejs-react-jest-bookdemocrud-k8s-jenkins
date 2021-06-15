@@ -1,20 +1,17 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
-
 import BookDataService from "../services/BookService";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
 // third party api integration
-
 import MyComponent from "./MyComponent";
 
 const mapStyles = {
   width: '45%',
   height: '45%',
 };
-
 const apiKey = 'AIzaSyA4RibEH1oTDyyNnJlgNpjSNryHVr4ttX0';
 
 

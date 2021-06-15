@@ -28,8 +28,33 @@ describe("TEST server.js", () => {
       });
   });
 
+ // anothor test expected to fail
+  it("GET /book/:id , should return book where id=30", async () => {
+    const id = 30;
+    return request(app)
+      .get(`/book/${id}`)
+      .expect(200)
+      .then(res => {
+        // { id: 1, author: 'Author 1', Description -> price: 100, Description -> genre: 'SciFi' }
+        expect(res.body).toMatchSnapshot();
+      });
+  });
+
+  // anothor test expected to fail
+   it("GET /book/:id , should return book where id=20", async () => {
+     const id = 2;
+     return request(app)
+       .get(`/book/${id}`)
+       .expect(200)
+       .then(res => {
+         // { id: 1, author: 'Author 1', Description -> price: 100, Description -> genre: 'SciFi' }
+         expect(res.body).toMatchSnapshot();
+       });
+   });
+
+
   it("GET /book/:id , should return error message when book with the specified id is not found", async () => {
-    const id = 10;
+    const id = 100;
     return request(app)
       .get(`/book/${id}`)
       .expect(400)

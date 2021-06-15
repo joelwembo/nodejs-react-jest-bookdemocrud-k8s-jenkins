@@ -15,6 +15,33 @@ Object {
 }
 `;
 
+exports[`TEST server.js GET /book/:id , should return book where id=1 2`] = `
+Object {
+  "author": "Author 3",
+  "genre": "Sports",
+  "id": 3,
+  "price": 200,
+}
+`;
+
+exports[`TEST server.js GET /book/:id , should return book where id=20 1`] = `
+Object {
+  "author": "Author 2",
+  "genre": "Comic",
+  "id": 2,
+  "price": 150,
+}
+`;
+
+exports[`TEST server.js GET /book/:id , should return book where id=30 1`] = `
+Object {
+  "author": "Author 4",
+  "genre": "Travel",
+  "id": 4,
+  "price": 250,
+}
+`;
+
 exports[`TEST server.js GET /book/:id , should return error message when book with the specified id is not found 1`] = `
 Object {
   "error": "Book not found!",
