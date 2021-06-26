@@ -1,4 +1,6 @@
 # book app demo CRUD created using the following technologies 
+Mean Stack is one of the fast growing open source development frameworks helps developers to develop a complex web application very easy and quickly. The term mean stack refer as a set of collected JavaScript based frameworks used to build a complex web apps. MongoDB, Express.JS, Angular, and Node.JS are a group of technologies that make a combination of MEAN Stack technology in Mobile and Web Applications.
+
 REACT TYPESCRIPT, NodeJS, Express,  MongoDB, React-Table.
 
 Software required:
