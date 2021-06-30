@@ -27,6 +27,17 @@ describe("TEST server.js", () => {
         expect(res.body).toMatchSnapshot();
       });
   });
+   it("GET /book/:id , should return book where id=8", async () => {
+    const id = 8;
+    return request(app)
+      .get(`/book/${id}`)
+      .expect(200)
+      .then(res => {
+        // { id: 1, author: 'Author 1', price: 100, genre: 'SciFi' }
+        expect(res.body).toMatchSnapshot();
+      });
+  });
+
 
  // anothor test expected to fail
   it("GET /book/:id , should return book where id=30", async () => {
