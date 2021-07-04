@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Book
+  // Create a Book controller
   const book = new Book({
     title: req.body.title,
     description: req.body.description,
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
   });
 
-  // Save Book in the database
+  // Save Book in the database controller
   book
     .save(book)
     .then(data => {
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Books from the database.
+// Retrieve all Books from the database. controller
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
