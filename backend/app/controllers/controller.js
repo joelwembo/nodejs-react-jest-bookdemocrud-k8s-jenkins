@@ -96,7 +96,7 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
-
+  // find a book by id
   Book.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
