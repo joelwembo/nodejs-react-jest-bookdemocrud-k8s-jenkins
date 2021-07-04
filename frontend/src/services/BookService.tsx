@@ -5,14 +5,17 @@ const getAll = () => {
   return http.get("/books");
 };
 
+// get a book by id
 const get = (id) => {
   return http.get(`/books/${id}`);
 };
 
+// create a book
 const create = (data) => {
   return http.post("/books", data);
 };
 
+// update a book
 const update = (id, data) => {
   return http.put(`/books/${id}`, data);
 };
