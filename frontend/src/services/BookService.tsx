@@ -1,5 +1,6 @@
 import http from "../components/http/http-common";
 
+// get all books
 const getAll = () => {
   return http.get("/books");
 };
