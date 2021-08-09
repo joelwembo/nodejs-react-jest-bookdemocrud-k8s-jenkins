@@ -35,7 +35,7 @@ try {
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Connected to the MongoDB");
+    console.log("Connected to the MongoDB....");
   })
   .catch(err => {
     console.log("Cannot connect to the database!", err);
