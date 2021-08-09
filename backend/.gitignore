@@ -1,1 +1,5 @@
 node_modules/
+vs
+.vs
+.vscode
+vscode
