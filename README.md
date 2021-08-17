@@ -4,7 +4,7 @@ Mean Stack is one of the fast growing open source development frameworks helps d
 REACT TYPESCRIPT, NodeJS, Express,  MongoDB, React-Table.
 
 Software required:
-Nodejs 
+Nodejs 16
 create-react-app
 Typescript
 MongoDB
