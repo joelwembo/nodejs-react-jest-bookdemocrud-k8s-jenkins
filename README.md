@@ -9,6 +9,7 @@ create-react-app
 Typescript
 MongoDB
 Postmon
+React 18
 
 To Run this application 
 
