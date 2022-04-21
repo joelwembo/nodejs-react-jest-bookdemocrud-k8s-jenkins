@@ -12,15 +12,11 @@ const app = express();
 var corsOptions = {
   origin: "http://localhost:3000" // for our frontend
 };
-
 app.use(cors(corsOptions));
-
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
-
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
-
 // creating models and connecting to the mongodb database
 const dbmodel = require("./app/models");
 
