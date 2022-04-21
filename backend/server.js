@@ -1,6 +1,14 @@
 /*  App : Book Demo
     Author : Joel Otepa Wembo
 */
+
+let https;
+try {
+  https = require('https');
+} catch (err) {
+  console.log('https support is disabled!');
+}
+
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
 const cors = require("cors");
