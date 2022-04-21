@@ -8,9 +8,6 @@ const cors = require("cors");
 const app = express();
 
 //testing modules dependencies
-
-
-
 // preventing others ip access to this rest api
 var corsOptions = {
   origin: "http://localhost:3000" // for our frontend
@@ -42,12 +39,9 @@ try {
     process.exit();
   });
 }
-
 catch(error) {
     console.log(error)
 }
-
-
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Demo Application Server Started...." + req});
