@@ -1,80 +1,48 @@
- Docker Compose file for Vapor
-
-version: '3.7'{{#fluent}}{{^db.is_sqlite}}
-
-volumes:
-  db_data:{{/db.is_sqlite}}{{/fluent}}
-
-x-shared_environment: &shared_environment
-  LOG_LEVEL: ${LOG_LEVEL:-debug}{{#fluent}}{{^db.is_sqlite}}{{^db.is_mongo}}
-  DATABASE_HOST: db
-  DATABASE_NAME: vapor_database
-  DATABASE_USERNAME: vapor_username
-  DATABASE_PASSWORD: vapor_password{{/db.is_mongo}}{{/db.is_sqlite}}{{#db.is_mongo}}
-  DATABASE_URL: mongodb://db:27017/vapor_database{{/db.is_mongo}}{{/fluent}}
-  
+ version: '3.8'
 services:
-  app:
-    image: {{name_kebab}}:latest
-    build:
-      context: .
-    environment:
-      <<: *shared_environment{{#fluent}}{{^db.is_sqlite}}
-    depends_on:
-      - db{{/db.is_sqlite}}{{/fluent}}
-    ports:
-      - '8080:8080'
-    # user: '0' # uncomment to run as root for testing purposes even though Dockerfile defines 'vapor' user.
-    command: ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]{{#fluent}}
-  migrate:
-    image: {{name_kebab}}:latest
-    build:
-      context: .
-    environment:
-      <<: *shared_environment{{^db.is_sqlite}}
-    depends_on:
-      - db{{/db.is_sqlite}}
-    command: ["migrate", "--yes"]
-    deploy:
-      replicas: 0
-  revert:
-    image: {{name_kebab}}:latest
-    build:
-      context: .
-    environment:
-      <<: *shared_environment{{^db.is_sqlite}}
-    depends_on:
-      - db{{/db.is_sqlite}}
-    command: ["migrate", "--revert", "--yes"]
-    deploy:
-      replicas: 0{{#db.is_postgres}}
-  db:
-    image: postgres:12-alpine
-    volumes:
-      - db_data:/var/lib/postgresql/data/pgdata
-    environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: vapor_username
-      POSTGRES_PASSWORD: vapor_password
-      POSTGRES_DB: vapor_database
-    ports:
-      - '5432:5432'{{/db.is_postgres}}{{#db.is_mysql}}
-  db:
-    image: mysql:8.0
-    volumes:
-      - db_data:/var/lib/mysql
-    environment:
-      MYSQL_USER: vapor_username
-      MYSQL_PASSWORD: vapor_password
-      MYSQL_DATABASE: vapor_database
-      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-    ports:
-      - '3306:3306'{{/db.is_mysql}}{{#db.is_mongo}}
-  db:
-    image: mongo:latest
-    volumes:
-      - db_data:/data/db
+  mysqldb:
+    image: mysql:5.7
     restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
-      - '27017:27017'{{/db.is_mongo}}{{/fluent}}
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - backend
+  
+  api:
+    depends_on:
+      - mysqldb
+    build: ./
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=$MYSQLDB_USER
+      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - DB_NAME=$MYSQLDB_DATABASE
+      - DB_PORT=$MYSQLDB_DOCKER_PORT
+      - CLIENT_ORIGIN=$CLIENT_ORIGIN
+    networks:
+      - backend
+      - frontend
 
+    build:
+      context: ./api
+      args:
+        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+    ports:
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+    networks:
+      - frontend  
+volumes: 
+  db:
+networks:
+  backend:
+  frontend:
