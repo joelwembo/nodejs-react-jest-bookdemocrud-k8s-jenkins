@@ -1,0 +1,52 @@
+networks:
+  lan:
+services:
+  storage:
+    hostname: storage
+    image: neo4j:4.4.8-enterprise
+    networks:
+      - lan
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+      NEO4J_AUTH: neo4j/passw0rd
+      NEO4J_dbms_default__advertised__address: storage
+      NEO4J_dbms_connector_http_listen__address: storage:9000
+      NEO4J_dbms_connector_bolt_listen__address: storage:9001
+    healthcheck:
+      test: [ "CMD-SHELL", "echo RETURN 1 | cypher-shell -a bolt://storage:9001 -u neo4j -p passw0rd || exit 1" ]
+
+  server:
+    hostname: server
+    image: neo4j/neo4j-ops-manager-server:latest
+    depends_on:
+      storage:
+        condition: service_healthy
+    networks:
+      - lan
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    environment:
+      SPRING_NEO4J_URI: bolt://storage:9001
+      SPRING_NEO4J_AUTHENTICATION_USERNAME: neo4j
+      SPRING_NEO4J_AUTHENTICATION_PASSWORD: passw0rd
+      SERVER_SSL_KEY_STORE_TYPE: PKCS12
+      SERVER_SSL_KEY_STORE: file:/certificates/localhost.pfx
+      SERVER_SSL_KEY_STORE_PASSWORD: changeit
+      GRPC_SERVER_SECURITY_KEY_STORE_TYPE: PKCS12
+      GRPC_SERVER_SECURITY_KEY_STORE: file:/certificates/localhost.pfx
+      GRPC_SERVER_SECURITY_KEY_STORE_PASSWORD: changeit
+      CORS_ALLOWEDHEADERS: "*"
+      CORS_ALLOWEDORIGINS: "http://localhost:[*],https://localhost:[*]"
+      JWT_SECRET: please-set-a-random-secret-string-here-for-jwt-signing
+    volumes:
+      - type: bind
+        source: ~/.nom/ssc
+        target: /certificates
+    entrypoint:
+      - "sh"
+      - "-c"
+      - "java -jar app.jar ssc -n localhost -o /certificates -p changeit -d localhost.localdomain -i 127.0.0.1 && java -jar app.jar"
