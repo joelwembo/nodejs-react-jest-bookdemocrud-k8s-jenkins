@@ -11,15 +11,15 @@ MongoDB
 Postmon
 React 18
 
-To Run this application 
+# To Run this application 
 
-backend
+# backend
 
 npm install
 
 nodemon src/index
 
-frontend
+# frontend
 
 npm install
 npm install typescript -g
@@ -28,13 +28,11 @@ npm install @types ...
 npm start 
 
 
-Testing REST API's in Express.js using Supertest
+# Testing REST API's in Express.js using Supertest
 npm install
 To install dependencies
-
 npm start
 To start server
-
 npm test
 To run tests
 
