@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: learnk8s/knote-js:1.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/dev
+          imagePullPolicy: Always
