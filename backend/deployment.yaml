@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactprodx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactprodx
+  template:
+    metadata:
+      labels:
+        app: reactprodx
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: reactprodx
+        image: joelwembo/reactprodx:latest
+        # imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 80
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 10
+        resources:
+            limits:
+              memory: 200Mi
+              cpu: 500m
+            requests:
+              cpu: 300m
+              memory: 200Mi  
+---
+# Load Balancer
+apiVersion: v1
+kind: Service
+metadata:  
+  name: reactprodx
+spec:
+  externalIPs:
+  - 18.141.186.159
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 80
+    nodePort: 31000
+  selector:
+    app: reactprodx
+  type: LoadBalancer
+status:
+  loadBalancer: {}              
